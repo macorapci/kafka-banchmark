@@ -5,12 +5,9 @@ import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 
 public class SimpleConsumer {
-    public static void main(String[] args) throws Exception {
-        //Kafka consumer configuration settings
-        String topicName = "test";
+    public static void main(String topicName, String host) throws Exception {
         Properties props = new Properties();
-
-        props.put("bootstrap.servers", "localhost:9092");
+        props.put("bootstrap.servers", host);
         props.put("group.id", "test");
         props.put("enable.auto.commit", "true");
         props.put("auto.commit.interval.ms", "1000");
@@ -26,16 +23,14 @@ public class SimpleConsumer {
         consumer.subscribe(Arrays.asList(topicName));
 
         //print the topic name
-        System.out.println("Subscribed to topic " + topicName);
+        //System.out.println("Subscribed to topic " + topicName);
 
-        while (true) {
-            consumer.seekToBeginning(consumer.assignment());
-            ConsumerRecords<String, String> records = consumer.poll(100);
-            for (ConsumerRecord<String, String> record : records)
-                System.out.printf("offset = %d, key = %s, value = %s\n",
-                        record.offset(), record.key(), record.value());
-            if (records.count()!=0)
-                break;
+        consumer.seekToBeginning(consumer.assignment());
+        ConsumerRecords<String, String> records=consumer.poll(Long.MAX_VALUE);
+        for (ConsumerRecord<String, String> record : records){
+            //System.out.printf("offset = %d, key = %s, value = %s",record.offset(), record.key(), record.value());
         }
+        consumer.commitSync();
+        consumer.close();
     }
 }
