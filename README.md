@@ -3,34 +3,6 @@
 Bu projede farklı programlama dillerinin Kafka'da mesajın üretilmesinde ve mesajın tüketilmesinde etkisine bakılmaya çalışılmıştır. Bu kıyaslama ise süre üzerinden yapılmaktadır.
 
 ```
-~$ sudo lshw -C display
-  *-display UNCLAIMED       
-       description: VGA compatible controller
-       product: GP107M [GeForce GTX 1050 Ti Mobile]
-       vendor: NVIDIA Corporation
-       physical id: 0
-       bus info: pci@0000:01:00.0
-       version: a1
-       width: 64 bits
-       clock: 33MHz
-       capabilities: pm msi pciexpress vga_controller bus_master cap_list
-       configuration: latency=0
-       resources: memory:a5000000-a5ffffff memory:90000000-9fffffff memory:a0000000-a1ffffff ioport:6000(size=128) memory:a6000000-a607ffff
-  *-display
-       description: VGA compatible controller
-       product: UHD Graphics 630 (Mobile)
-       vendor: Intel Corporation
-       physical id: 2
-       bus info: pci@0000:00:02.0
-       version: 00
-       width: 64 bits
-       clock: 33MHz
-       capabilities: pciexpress msi pm vga_controller bus_master cap_list rom
-       configuration: driver=i915 latency=0
-       resources: irq:172 memory:a4000000-a4ffffff memory:80000000-8fffffff ioport:7000(size=64) memory:c0000-dffff
-```
-
-```
 ~$ lscpu
 Architecture:                    x86_64
 CPU op-mode(s):                  32-bit, 64-bit
