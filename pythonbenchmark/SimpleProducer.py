@@ -4,8 +4,7 @@ from kafka import KafkaProducer
 
 def start(topicName, host, messageNum):
 	producer = KafkaProducer(bootstrap_servers=[host],
-                         value_serializer=lambda x: 
-                         dumps(x).encode('utf-8'))
+                         value_serializer=lambda x: dumps(x).encode('utf-8'))
                          
                          
 	for k in range(messageNum):

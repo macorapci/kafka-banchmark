@@ -14,7 +14,6 @@ public class BenchmarkTest {
             long consumerEnd = System.currentTimeMillis();
             System.out.printf("%d message is consumed in %.3f ms\n",messages[k],(consumerEnd-consumerStart)/1000.0);
 
-            System.out.println();
         }
 
     }

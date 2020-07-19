@@ -1,4 +1,4 @@
-from kafka import KafkaConsumer, TopicPartition
+from kafka import KafkaConsumer
 from json import loads
 
 def start(topicName, host, messageNum):
