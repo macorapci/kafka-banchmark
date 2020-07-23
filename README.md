@@ -2,45 +2,54 @@
 
 Bu projede farklı programlama dillerinin Kafka'da mesajın üretilmesinde ve mesajın tüketilmesinde etkisine bakılmaya çalışılmıştır. Bu kıyaslama ise süre üzerinden yapılmaktadır.
 
+Benchmark testi, localhost'ta yapılmıştır. Aynı bilgisayar ile yapılmış her benchmark testi için çıktılar aşağıda verilmiştir:
+
+## Java
+https://mvnrepository.com/artifact/org.apache.kafka kütüphanesi projeye maven ile eklenmiştir.
 ```
-~$ lscpu
-Architecture:                    x86_64
-CPU op-mode(s):                  32-bit, 64-bit
-Byte Order:                      Little Endian
-Address sizes:                   39 bits physical, 48 bits virtual
-CPU(s):                          12
-On-line CPU(s) list:             0-11
-Thread(s) per core:              2
-Core(s) per socket:              6
-Socket(s):                       1
-NUMA node(s):                    1
-Vendor ID:                       GenuineIntel
-CPU family:                      6
-Model:                           158
-Model name:                      Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz
-Stepping:                        10
-CPU MHz:                         800.026
-CPU max MHz:                     4100,0000
-CPU min MHz:                     800,0000
-BogoMIPS:                        4399.99
-Virtualization:                  VT-x
-L1d cache:                       192 KiB
-L1i cache:                       192 KiB
-L2 cache:                        1,5 MiB
-L3 cache:                        9 MiB
-NUMA node0 CPU(s):               0-11
-Vulnerability Itlb multihit:     KVM: Mitigation: Split huge pages
-Vulnerability L1tf:              Mitigation; PTE Inversion; VMX conditional cache flushes, SMT vulnerable
-Vulnerability Mds:               Mitigation; Clear CPU buffers; SMT vulnerable
-Vulnerability Meltdown:          Mitigation; PTI
-Vulnerability Spec store bypass: Mitigation; Speculative Store Bypass disabled via prctl and seccomp
-Vulnerability Spectre v1:        Mitigation; usercopy/swapgs barriers and __user pointer sanitization
-Vulnerability Spectre v2:        Mitigation; Full generic retpoline, IBPB conditional, IBRS_FW, STIBP conditional, RSB filling
-Vulnerability Srbds:             Mitigation; Microcode
-Vulnerability Tsx async abort:   Not affected
-Flags:                           fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch
-                                 _perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2
-                                 apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb invpcid_single pti ssbd ibrs ibpb stibp tpr_shadow vnmi flexprior
-                                 ity ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx rdseed adx smap clflushopt intel_pt xsaveopt xsavec xgetbv1 xsaves dtherm ida arat pln pts hw
-                                 p hwp_notify hwp_act_window hwp_epp md_clear flush_l1d
+log4j:WARN No appenders could be found for logger (org.apache.kafka.clients.producer.ProducerConfig).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+10 message is produced in 0.518 ms
+10 message is consumed in 0.111 ms
+100 message is produced in 0.021 ms
+100 message is consumed in 0.034 ms
+1000 message is produced in 0.029 ms
+1000 message is consumed in 0.039 ms
+10000 message is produced in 0.054 ms
+10000 message is consumed in 0.031 ms
+100000 message is produced in 0.232 ms
+100000 message is consumed in 0.023 ms
+ 
+Process finished with exit code 0
+```
+
+## Python
+Bu projenin çalışabilmesi için python-kafka kütüphanesi gerekmektedir. Pip3 paket yönetici ile kolayca indirilebilir.
+```
+10  message is produced in  440  ms
+10  message is consumed in  654  ms
+100  message is produced in  145  ms
+100  message is consumed in  259  ms
+1000  message is produced in  185  ms
+1000  message is consumed in  245  ms
+10000  message is produced in  400  ms
+10000  message is consumed in  456  ms
+100000  message is produced in  2863  ms
+100000  message is consumed in  1209  ms
+```
+
+## C++
+Bu projenin çalışabilmesi için cppkafka ve librdkafka kütüphanesinin kurulması gerekmektedir. Bu kütüphaneler github'da açık kaynak olarak paylaşılmıştır.
+```
+10 message is produced in: 0.104 ms
+10 message is consumed in: 3.054 ms
+100 message is produced in: 1.022 ms
+100 message is consumed in: 3.031 ms
+1000 message is produced in: 10.175 ms
+1000 message is consumed in: 3.161 ms
+10000 message is produced in: 102.003 ms
+10000 message is consumed in: 4.215 ms
+100000 message is produced in: 1018.185 ms
+100000 message is consumed in: 12.470 ms
 ```
